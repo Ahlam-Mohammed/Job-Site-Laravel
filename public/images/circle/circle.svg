@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1562" height="1467" viewBox="0 0 1562 1467">
+  <g id="circle" transform="translate(200 652)">
+    <g id="Group_1" data-name="Group 1">
+      <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(-200 -471)" fill="rgba(255,255,255,0)" stroke="rgba(51,52,72,0.15)" stroke-width="2">
+        <circle cx="471.5" cy="471.5" r="471.5" stroke="none"/>
+        <circle cx="471.5" cy="471.5" r="470.5" fill="none"/>
+      </g>
+      <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(442 -652)" fill="rgba(255,255,255,0)" stroke="rgba(51,52,72,0.15)" stroke-width="2">
+        <circle cx="407" cy="407" r="407" stroke="none"/>
+        <circle cx="407" cy="407" r="406" fill="none"/>
+      </g>
+      <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(548 1)" fill="rgba(255,255,255,0)" stroke="rgba(51,52,72,0.15)" stroke-width="2">
+        <circle cx="407" cy="407" r="407" stroke="none"/>
+        <circle cx="407" cy="407" r="406" fill="none"/>
+      </g>
+      <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(-200 162)" fill="rgba(255,255,255,0)" stroke="rgba(51,52,72,0.15)" stroke-width="2">
+        <circle cx="294" cy="294" r="294" stroke="none"/>
+        <circle cx="294" cy="294" r="293" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
