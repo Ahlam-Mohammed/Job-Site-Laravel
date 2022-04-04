@@ -39,7 +39,7 @@
 </svg>
 
 </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">E-library</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Job.com</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -54,139 +54,33 @@
             <span class="menu-header-text">Users Manager</span>
         </li>
         <li class="menu-item">
-            <a href="{{ route('dashboard.users') }}" class="menu-link">
-                <div >Show Users</div>
-            </a>
-        </li>
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Books Manager</span>
-        </li>
-        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bx-food-menu'></i>
-                <div>Books</div>
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Users">Users</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="/dashboard-books-index" class="menu-link">
-                        <div >Show All Books</div>
+                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                        <div data-i18n="All Users">All Users</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/dashboard-books-create" class="menu-link">
-                        <div >Add New Book</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bx-food-menu'></i>
-                <div>Authors</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/dashboard-authors-index" class="menu-link">
-                        <div >Show All Authors</div>
+                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                        <div data-i18n="Companies">Companies</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/dashboard-authors-create" class="menu-link">
-                        <div >Add New Author</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bx-food-menu'></i>
-                <div>Publishers</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/dashboard-publishers-index" class="menu-link">
-                        <div >Show All Publishers</div>
+                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                        <div data-i18n="Seekers">Seekers</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/dashboard-publishers-create" class="menu-link">
-                        <div >Add New Publisher</div>
+                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                        <div data-i18n="Admins">Admins</div>
                     </a>
                 </li>
-            </ul>
-        </li>
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Categories Manager</span>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bx-food-menu'></i>
-                <div>Category</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/dashboard-categories-index" class="menu-link">
-                        <div >Show All Categories</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/dashboard-categories-create" class="menu-link">
-                        <div >Add New Category</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Offers Manager</span>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bx-food-menu'></i>
-                <div>Offer</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/dashboard-offers-index" class="menu-link">
-                        <div >Show All Offers</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/dashboard-offers-create" class="menu-link">
-                        <div >Add New Offer</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Payment Manager</span>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons bx bx-food-menu'></i>
-                <div>Payment</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/dashboard-payments-index" class="menu-link">
-                        <div >Show All Payments</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/dashboard-payments-create" class="menu-link">
-                        <div >Add New Payment</div>
-                    </a>
-                </li>
             </ul>
-        </li>
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">City Manager</span>
-        </li>
-        <li class="menu-item">
-            <a href="/dashboard-cities-index" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div>Cities Manager</div>
-            </a>
         </li>
     </ul>
 
