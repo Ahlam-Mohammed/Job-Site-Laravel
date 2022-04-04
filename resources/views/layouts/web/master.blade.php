@@ -7,6 +7,7 @@
     <meta name="author" content="Ahlam Mohammed">
     <meta name="keywords" content="Job , وظائف">
     <meta name="description" content="Your career starts here">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
 

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.seeker.master')
+@extends('layouts.web.seeker.master')
 
 @section('content')
 

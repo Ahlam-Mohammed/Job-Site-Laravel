@@ -31,13 +31,13 @@
                 <i class="fa fa-user pe-2"></i>
                 <span class="fs-6 fw-normal">Account</span>
             </a>
-            <a href="{{ route('seeker.skills') }}" class="text-light d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
+            <a href="{{ route('seeker.skills.index') }}" class="text-light d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa fa-shekel-sign pe-2"></i>
                 <span class="fs-6 fw-normal">Skills</span>
             </a>
 
             <!-- experience -->
-            <a href="{{ route('seeker.experiences') }}" class="text-light d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
+            <a href="{{ route('seeker.experiences.index') }}" class="text-light d-flex align-items-center d-inline-block ms-3 border-bottom pb-2">
                 <i class="fa fa-object-group pe-2"></i>
                 <span class="fs-6 fw-normal">Experience</span>
             </a>

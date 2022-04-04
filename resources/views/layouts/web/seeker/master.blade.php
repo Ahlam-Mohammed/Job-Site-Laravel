@@ -7,6 +7,7 @@
     <meta name="author" content="Ahlam Mohammed">
     <meta name="keywords" content="Job , وظائف">
     <meta name="description" content="موقع مختص في توفير الوظائف">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Dashboard</title>
 
@@ -20,7 +21,7 @@
         <div class="row p-0 m-0">
 
             {{-- Sidbar  --}}
-            @include('layouts.dashboard.seeker.sidebar')
+            @include('layouts.web.seeker.sidebar')
             <div class="col-lg-9 col-12">
                 <div class="container-lg p-0">
                     {{-- Content Section  --}}

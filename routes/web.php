@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Seeker\ExperienceController;
+use App\Http\Controllers\Seeker\SkillController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::view('/register-way','auth.register-way')->name('register.way');
+Route::get('/register/{role}', function ($role){
+    return view('auth.register',compact('role'));
+})->name('registerUser');
+
 Route::view('/','web.index')->name('home');
 Route::view('/about','web.about')->name('about');
 Route::view('/service','web.services')->name('service');
@@ -24,15 +32,15 @@ Route::view('/details','web.details-job')->name('details');
 ///////////////////////// Start Seekers /////////////////////////
 Route::prefix('seeker')->group(function (){
 
-    Route::name('seeker.')->group(function (){
+    Route::middleware(['auth'])->name('seeker.')->group(function (){
 
         Route::view('/profile','web.seeker.profile')->name('profile');
 
         ///////////////////////// Start Seekers Dashboard /////////////////////////
         Route::view('/dashboard','dashboard.seeker.index')->name('dashboard');
         Route::view('/account','dashboard.seeker.account')->name('account');
-        Route::view('/skills','dashboard.seeker.skills')->name('skills');
-        Route::view('/experiences','dashboard.seeker.experiences')->name('experiences');
+        Route::resource('skills', SkillController::class);
+        Route::resource('experiences', ExperienceController::class);
         Route::view('/educations','dashboard.seeker.educations')->name('educations');
         Route::view('/languages','dashboard.seeker.languages')->name('languages');
         ///////////////////////// End Seekers Dashboard /////////////////////////
@@ -41,4 +49,9 @@ Route::prefix('seeker')->group(function (){
 
 });
 ///////////////////////// End Seekers /////////////////////////
+
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
