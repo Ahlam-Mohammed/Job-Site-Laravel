@@ -29,6 +29,23 @@ Route::view('/companies','web.companies')->name('companies');
 Route::view('/jobs','web.jobs')->name('jobs');
 Route::view('/details','web.details-job')->name('details');
 
+
+///////////////////////// Start Dashboard /////////////////////////
+Route::prefix('dashboard')->group(function (){
+
+    Route::middleware(['auth'])->name('dashboard.')->group(function (){
+
+        Route::view('/','dashboard.index');
+        Route::view('/users','dashboard.users')->name('users');
+
+    });
+
+});
+///////////////////////// End Dashboard /////////////////////////
+
+
+
+
 ///////////////////////// Start Seekers /////////////////////////
 Route::prefix('seeker')->group(function (){
 
@@ -52,6 +69,4 @@ Route::prefix('seeker')->group(function (){
 
 
 Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
