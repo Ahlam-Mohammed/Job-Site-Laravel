@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('status')->default('approval');
             $table->string('job_location')->nullable();
 
-            $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('company_id');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 
             $table->timestamps();
 
