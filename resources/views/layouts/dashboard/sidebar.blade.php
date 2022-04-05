@@ -82,6 +82,23 @@
 
             </ul>
         </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Jobs Manager</span>
+        </li>
+        <li class="menu-item">
+            <a href="" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Jobs">Jobs</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('dashboard.jobs.index') }}" class="menu-link">
+                        <div data-i18n="All Jobs">All Jobs</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 
 </aside>

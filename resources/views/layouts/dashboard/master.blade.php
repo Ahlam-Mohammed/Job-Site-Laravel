@@ -36,6 +36,7 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
+                    @include('components.alert')
                     @yield('content')
                 </div>
                 <!-- / Content -->

@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->softDeletes(); // this will create deleted_at field for softdelete
+            $table->softDeletes(); // this will create deleted_at field for soft delete
         });
     }
 
