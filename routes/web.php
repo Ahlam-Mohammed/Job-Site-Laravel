@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\Seeker\ExperienceController;
 use App\Http\Controllers\Seeker\SkillController;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ Route::prefix('dashboard')->group(function (){
     Route::middleware(['auth'])->name('dashboard.')->group(function (){
 
         Route::view('/','dashboard.index');
-        Route::view('/users','dashboard.users')->name('users');
+        Route::resource('users', UserController::class);
 
     });
 

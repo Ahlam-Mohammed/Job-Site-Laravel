@@ -54,28 +54,28 @@
             <span class="menu-header-text">Users Manager</span>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Users">Users</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                    <a href="{{ route('dashboard.users.index') }}" class="menu-link">
                         <div data-i18n="All Users">All Users</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                    <a href="" class="menu-link">
                         <div data-i18n="Companies">Companies</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                    <a href="" class="menu-link">
                         <div data-i18n="Seekers">Seekers</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('dashboard.users') }}" class="menu-link">
+                    <a href="" class="menu-link">
                         <div data-i18n="Admins">Admins</div>
                     </a>
                 </li>
