@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboard\JobController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\Seeker\ExperienceController;
 use App\Http\Controllers\Seeker\SkillController;
@@ -38,6 +39,7 @@ Route::prefix('dashboard')->group(function (){
 
         Route::view('/','dashboard.index');
         Route::resource('users', UserController::class);
+        Route::resource('jobs', JobController::class);
 
     });
 

@@ -17,14 +17,8 @@ class UserController extends Controller
     {
         $users = User::orderBy('id','DESC')->get();
         $roles = Role::pluck('name')->all();
-        return view('dashboard.users', compact('users','roles'));
+        return view('dashboard.users.all-users', compact('users','roles'));
     }
-
-//    public function create()
-//    {
-//        $roles = Role::pluck('name')->all();
-//        return view('dashboard.users_manger.create', compact('roles'));
-//    }
 
     public function store(Request $request)
     {
@@ -45,22 +39,9 @@ class UserController extends Controller
 //        return view('show', compact('user'));
     }
 
-//    public function edit(User $user)
-//    {
-//        $roles    = Role::pluck('name','name')->all();
-//        $userRole = $user->roles->pluck('name')->all();
-//
-//        return view('dashboard.users_manger.edit', compact('user','roles','userRole'));
-//    }
-
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
-        ]);
+        Validator::validate($request->all(), User::$validate,User::$message);
 
         $input = $request->all();
         if(!empty($input['password'])){
@@ -71,6 +52,7 @@ class UserController extends Controller
 
         $user = User::find($id);
         $user->update($input);
+
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
