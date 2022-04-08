@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class SkillEnum
+class LevelEnum
 {
     const ADVANCED     = "advanced";
     const INTERMEDIATE = "intermediate";
