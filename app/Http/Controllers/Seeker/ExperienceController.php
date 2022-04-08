@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Seeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\Experience;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExperienceController extends Controller
 {
     public function index()
     {
-        $experiences = Experience::orderBy('id','DESC')->get();
-        return view('web.seeker.dashboard.experiences', compact('experiences'));
+        $experiences = User::find(Auth::id())->experiences()->get();
+        return view('web.seeker.dashboard.experience.experiences', compact('experiences'));
     }
 
     public function store(Request $request)
