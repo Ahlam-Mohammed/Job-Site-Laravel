@@ -6,23 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index($role = null)
     {
-        $users = User::orderBy('id','DESC')->get();
+        $role === null ?
+            $users = User::orderBy('id','DESC')->get() :
+            $users =  User::role($role)->orderBy('id','DESC')->get();
+
         $roles = Role::pluck('name')->all();
+
         return view('dashboard.users.all-users', compact('users','roles'));
     }
 
     public function store(Request $request)
     {
-        Validator::validate($request->all(), User::$validate,User::$message);
+        $this->validate($request, User::validate());
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -34,14 +36,9 @@ class UserController extends Controller
             ->with('success', 'User has been added');
     }
 
-    public function show(User $user)
-    {
-//        return view('show', compact('user'));
-    }
-
     public function update(Request $request, $id)
     {
-        Validator::validate($request->all(), User::$validate,User::$message);
+//        $this->validate($request, User::validate());
 
         $input = $request->all();
         if(!empty($input['password'])){
@@ -53,9 +50,9 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($input);
 
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-        $user->assignRole($request->input('roles'));
+//        DB::table('model_has_roles')->where('model_id',$id)->delete();
+//
+//        $user->assignRole($request->input('roles'));
 
         return redirect()->route('dashboard.users.index')
             ->with('success','User updated successfully');
@@ -68,4 +65,5 @@ class UserController extends Controller
         return redirect()->route('dashboard.users.index')
             ->with('success', 'User deleted successfully');
     }
+
 }

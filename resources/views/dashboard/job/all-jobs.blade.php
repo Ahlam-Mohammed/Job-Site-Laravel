@@ -1,5 +1,5 @@
 @extends('layouts.dashboard.master')
-@php use App\Enum\RoleEnum @endphp
+@php use App\Enum\JobEnum@endphp
 @section('title') Jobs @stop
 
 @section('content')
@@ -35,16 +35,22 @@
                             <td>{{ $job->professional_level }}</td>
                             <td>
                                 @if($job->is_active === 1)
-                                    <span class="badge bg-label-primary me-1"> Active</span>
+                                    <a href="{{ route('dashboard.jobs.active', $job->id) }}">
+                                        <span class="badge bg-label-primary me-1"> Active</span>
+                                    </a>
                                 @else
-                                    <span class="badge bg-label-warning me-1"> DeActive</span>
+                                    <a href="{{ route('dashboard.jobs.active', $job->id) }}">
+                                        <span class="badge bg-label-warning me-1"> DeActive</span>
+                                    </a>
                                 @endif
                             </td>
                             <td>
-                                @if($job->status)
-                                    <span class="badge bg-label-primary me-1"> Active</span>
+                                @if($job->status === JobEnum::STATUS_UNDER_APPROVAL)
+                                    <span class="badge bg-label-success me-1"> {{ $job->status }}</span>
+                                @elseif($job->status === JobEnum::STATUS_APPROVED)
+                                    <span class="badge bg-label-primary me-1"> {{ $job->status }}</span>
                                 @else
-                                    <span class="badge bg-label-warning me-1"> DeActive</span>
+                                    <span class="badge bg-label-warning me-1"> {{ $job->status }}</span>
                                 @endif
                             </td>
                             <td>
@@ -54,108 +60,36 @@
                                         <a class="dropdown-item"
                                            href="javascript:void(0);"
                                            data-bs-toggle="modal"
-                                           data-bs-target="#modal-update-">
+                                           data-bs-target="#modal-update-{{ $job->id , $job->job_title, $job->career_field, $job->description, $job->type, $job->max_salary, $job->min_salary, $job->professional_level, $job->skills }}">
                                             <i class="bx bx-edit-alt me-1"></i> Edit
                                         </a>
                                         <a class="dropdown-item"
                                            href="javascript:void(0);"
                                            data-bs-toggle="modal"
-                                           data-bs-target="#modal-delete-">
+                                           data-bs-target="#modal-delete-{{ $job->id }}">
                                             <i class="bx bx-trash me-1"></i> Delete
                                         </a>
+                                        @if($job->status === JobEnum::STATUS_UNDER_APPROVAL)
+                                            <a class="dropdown-item"
+                                               href="{{ route('dashboard.jobs.status', [ 'id' => $job->id, 'status' => JobEnum::STATUS_APPROVED ]) }}">
+                                                <i class='bx bx-check me-1 text-primary'></i> Approval
+                                            </a>
+                                            <a class="dropdown-item"
+                                               href="{{ route('dashboard.jobs.status', [ 'id' => $job->id, 'status' => JobEnum::STATUS_DISAPPROVAL ]) }}">
+                                                <i class='bx bx-x me-1 text-danger'></i> Disapproval
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
                         <!-- Modal Edit -->
-                        <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form action="" method="post">
-                                        @csrf
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col mb-3">
-                                                    <label for="nameWithTitle" class="form-label">Name</label>
-                                                    <input name="name" value="{{ old('name') }}" type="text" id="nameWithTitle" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
-                                                    @error('name') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col mb-3">
-                                                    <label for="nameWithTitle" class="form-label">Full Name</label>
-                                                    <input name="full_name" value="{{ old('full_name') }}" type="text" id="nameWithTitle" class="form-control" placeholder="Enter Full Name">
-                                                </div>
-                                            </div>
-                                            <div class="row g-2">
-                                                <div class="col mb-0">
-                                                    <label for="emailWithTitle" class="form-label">Email</label>
-                                                    <input name="email" value="{{ old('email') }}" type="email" id="emailWithTitle" class="form-control @error('email') is-invalid @enderror" placeholder="xxxx@xxx.xx">
-                                                    @error('email') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
-                                                </div>
-                                                <div class="col-md-6 mb-4">
-                                                    <div>
-                                                        <label for="select2Multiple" class="form-label @error('roles') is-invalid @enderror">Role</label>
-                                                        <select name="roles[]" id="select2Multiple" class="select2 form-select" multiple>
-                                                            @if(isset($roles))
-                                                                @foreach($roles as $role)
-                                                                    <option>{{ $role }}</option>
-                                                                @endforeach
-                                                            @endif
-                                                        </select>
-                                                        @error('roles') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row g-2">
-                                                <div class="col mb-0">
-                                                    <label for="emailWithTitle" class="form-label">Password</label>
-                                                    <input name="password" type="password" id="emailWithTitle" class="form-control @error('password') is-invalid @enderror" placeholder="***********">
-                                                    @error('password') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
-                                                </div>
-                                                <div class="col mb-0">
-                                                    <label for="dobWithTitle" class="form-label">Confirm Password</label>
-                                                    <input name="confirm-password" type="password" id="dobWithTitle" class="form-control @error('confirm-password') is-invalid @enderror" placeholder="***********">
-                                                    @error('confirm-password') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        @include('dashboard.job.modals.update')
 
                         <!-- Modal Delete -->
-                        <div class="modal fade" id="modal-delete-{{ $user->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form action="{{ route('dashboard.users.destroy', $user->id) }}" method="post">
-                                        @csrf @method('DELETE')
-                                        <div class="modal-body">
-                                            <h3 class="fs-4">Do you want to delete?</h3>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Delete</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        @include('dashboard.job.modals.delete')
+
                     @endforeach
                 @endif
                 </tbody>

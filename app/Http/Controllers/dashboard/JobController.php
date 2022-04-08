@@ -8,80 +8,54 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    /**
-     * Display a listing of the jobs.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index($status = null)
     {
-        $jobs = Job::all();
+        $status === null ? $jobs = Job::all() : $jobs = Job::where('status',$status)->get();
+
         return view('dashboard.job.all-jobs', compact('jobs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, Job::validate());
+        Job::create($request->all());
+
+        return redirect()->route('dashboard.jobs.index')
+            ->with('success', 'Job has been added');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+//        $this->validate($request, Job::validate());
+        $user = Job::find($id);
+        $user->update($request->all());
+
+        return redirect()->route('dashboard.jobs.index')
+            ->with('success', 'Job updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Job $job)
     {
-        //
+        $job->delete();
+        return redirect()->route('dashboard.jobs.index')
+            ->with('success', 'Job deleted successfully');
+    }
+
+    public function  status($id, $status)
+    {
+        Job::where('id', $id)->update(['status' => $status]);
+
+        return back()
+            ->with('success', 'Status updated successfully');
+    }
+
+    public function  active($id)
+    {
+        $job = Job::find($id);
+        $job->is_active === 1 ? $job->update(['is_active' => 0]) : $job->update(['is_active' => 1]);
+
+        return back()
+            ->with('success', 'Active updated successfully');
     }
 }
