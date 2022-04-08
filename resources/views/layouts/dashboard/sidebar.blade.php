@@ -1,3 +1,7 @@
+@php
+    use App\Enum\JobEnum;
+    use App\Enum\RoleEnum;
+@endphp
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
 
@@ -65,18 +69,23 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('dashboard.users.index', RoleEnum::COMPANY) }}" class="menu-link">
                         <div data-i18n="Companies">Companies</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('dashboard.users.index', RoleEnum::SEEKER) }}" class="menu-link">
                         <div data-i18n="Seekers">Seekers</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('dashboard.users.index', RoleEnum::ADMIN) }}" class="menu-link">
                         <div data-i18n="Admins">Admins</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('dashboard.users.index', RoleEnum::SUPER_ADMIN) }}" class="menu-link">
+                        <div data-i18n="Super Admin">Super Admin</div>
                     </a>
                 </li>
 
@@ -96,9 +105,17 @@
                     <a href="{{ route('dashboard.jobs.index') }}" class="menu-link">
                         <div data-i18n="All Jobs">All Jobs</div>
                     </a>
+                    <a href="{{ route('dashboard.jobs.index', JobEnum::STATUS_APPROVED) }}" class="menu-link">
+                        <div data-i18n="It has been approved">It has been approved</div>
+                    </a>
+                    <a href="{{ route('dashboard.jobs.index', JobEnum::STATUS_UNDER_APPROVAL) }}" class="menu-link">
+                        <div data-i18n="Under approval">Under approval</div>
+                    </a>
+                    <a href="{{ route('dashboard.jobs.index', JobEnum::STATUS_DISAPPROVAL) }}" class="menu-link">
+                        <div data-i18n="Access denied">Access denied</div>
+                    </a>
                 </li>
             </ul>
         </li>
     </ul>
-
 </aside>
