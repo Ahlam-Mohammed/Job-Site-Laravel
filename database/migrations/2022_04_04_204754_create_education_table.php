@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
+            $table->string('academic_spec'); //Academic specialization
             $table->string('type'); //Type of certificate
             $table->string('university'); //university or institution
-            $table->string('academic_spec'); //Academic specialization
             $table->date('graduat_date'); //Graduation Date
             $table->string('average')->nullable();
 
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

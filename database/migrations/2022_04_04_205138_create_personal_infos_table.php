@@ -18,9 +18,11 @@ return new class extends Migration
             $table->date('birth')->nullable();
             $table->boolean('gender')->nullable();
             $table->string('nationality')->nullable();
+            $table->string('residence_country')->nullable();
 
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

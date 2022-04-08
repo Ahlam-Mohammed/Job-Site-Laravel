@@ -17,18 +17,18 @@ return new class extends Migration
             $table->id();
             $table->string('job_title');
             $table->string('career_field');
-            $table->string('description');
+            $table->text('description');
             $table->string('type');
             $table->boolean('is_active')->default(1);
             $table->double('max_salary')->nullable();
             $table->double('min_salary')->nullable();
             $table->string('professional_level')->nullable();
-            $table->string('skills');
-            $table->string('status')->default('approval');
+            $table->text('skills');
+            $table->string('status')->default('Under approval');
             $table->string('job_location')->nullable();
 
-            $table->foreignId('company_id');
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
 
