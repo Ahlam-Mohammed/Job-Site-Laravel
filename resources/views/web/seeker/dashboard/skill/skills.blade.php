@@ -26,14 +26,16 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <h6 class="text-black">{{ $skill->level }}</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: {{ $skill->level }}%;" aria-valuenow="{{ $skill->level }}" aria-valuemin="0" aria-valuemax="100">{{ $skill->level }}%</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Modal Delete -->
-                            @include('web.seeker.modals.skill.delete')
+                            @include('web.seeker.dashboard.skill.model.delete')
                             <!-- Modal Update -->
-                            @include('web.seeker.modals.skill.update')
+                            @include('web.seeker.dashboard.skill.model.update')
 
                         @endforeach
                     </div>
@@ -43,6 +45,6 @@
     </div>
 
     <!-- Modal Create -->
-    @include('web.seeker.modals.skill.create')
+    @include('web.seeker.dashboard.skill.model.create')
 
 @endsection
