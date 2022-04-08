@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Education extends Model
+class About extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
     public static $validate = [
-        'type'           => 'required',
-        'university'     => 'required',
-        'academic_spec'  => 'required',
-        'graduat_date'   => 'required',
-        'user_id'        => 'required'
+        'job_title' => 'required',
+        'about'     => 'required',
     ];
 
     //////  Relationships /////
