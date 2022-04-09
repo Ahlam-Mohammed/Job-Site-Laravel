@@ -36,6 +36,7 @@ Route::get('/register/{role}', function ($role){
 
 Route::post('/change/password', [ChangePasswordController::class, 'updatePassword'])->name('update-password');
 
+
 /*
 |--------------------------------------------------------------------------
 | Start Web
