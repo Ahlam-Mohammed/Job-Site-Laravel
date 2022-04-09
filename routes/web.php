@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\ChangePasswordController;
 use App\Http\Controllers\company\AccountController;
 use App\Http\Controllers\dashboard\JobController;
 use App\Http\Controllers\company\JobController as JobCompanyController;
@@ -33,6 +34,7 @@ Route::get('/register/{role}', function ($role){
     return view('auth.register',compact('role'));
 })->name('registerUser');
 
+Route::post('/change/password', [ChangePasswordController::class, 'updatePassword'])->name('update-password');
 
 /*
 |--------------------------------------------------------------------------
