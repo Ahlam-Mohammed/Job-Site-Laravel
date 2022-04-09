@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,21 +47,94 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static $validate = [
-        'name'     => 'required',
-        'email'    => 'required|email|unique:users',
-        'password' => 'required|same:confirm-password|min:6',
-        'roles'    => 'required'
-    ];
+    public static function validate($id = '')
+    {
+        return [
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users,email,'.$id,
+            'password' => 'required|same:confirm-password|min:6',
+            'roles'    => 'required'
+        ];
+    }
 
-    public static $message = [
-        'name.required'     => 'من فضلك أدخل اسم المستخدم',
-        'email.required'    => 'من فضلك أدخل البريد الإلكتروني',
-        'email.unique'      => 'البريد الإلكتروني موجود بالفعل',
-        'email.email'       => 'من فضلك أدخل البريد الإلكتروني الصحيح',
-        'password.required' => 'من فضلك أدخل كلمة السر',
-        'password.same'     => 'كلمة السر غير مطابقة',
-        'password.min'      => 'يجب أن تكون كلمة المرور أكثر من 6 أحرف',
-        'roles.required'    => 'من فضلك حدد نوع المستخدم'
-    ];
+
+    /**
+     * Get User About
+     */
+    public function about(): HasOne
+    {
+        return $this->hasOne(About::class);
+    }
+
+    /**
+     * Get User Information
+     */
+    public function info(): HasMany
+    {
+        return $this->hasMany(Seeker::class);
+    }
+
+    /**
+     * Get User Educations
+     */
+    public function education(): HasMany
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    /**
+     * Get User Experiences
+     */
+    public function experiences(): HasMany
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    /**
+     * Get User Languages
+     */
+    public function languages(): HasMany
+    {
+        return $this->hasMany(Language::class);
+    }
+
+    /**
+     * Get User Skills
+     */
+    public function skills(): HasMany
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+    /**
+     * Get User Personal Info
+     */
+    public function personalInfo(): HasOne
+    {
+        return $this->hasOne(PersonalInfo::class);
+    }
+
+    /**
+     * Get User Social Media
+     */
+    public function social(): HasOne
+    {
+        return $this->hasOne(SocialMedia::class);
+    }
+
+    /**
+     * Get User Company
+     */
+    public function company(): HasOne
+    {
+        return $this->hasOne(Company::class);
+    }
+
+    /**
+     * Get User jobs
+     */
+    public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class);
+    }
 }

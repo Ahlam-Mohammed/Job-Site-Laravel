@@ -4,23 +4,24 @@ namespace App\Http\Controllers\Seeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::orderBy('id','DESC')->get();
-        return view('web.seeker.dashboard.skills', compact('skills'));
+        $skills = User::find(Auth::id())->skills()->get();
+
+        return view('web.seeker.dashboard.skill.skills', compact('skills'));
     }
 
     public function store(Request $request)
     {
         $request->validate( Skill::$validate );
 
-        $input = $request->all();
-
-        Skill::create($input);
+        Skill::create($request->all());
 
         return redirect()->route('seeker.skills.index')
             ->with('success', 'Skill has been added');
@@ -30,10 +31,8 @@ class SkillController extends Controller
     {
         $request->validate( Skill::$validate );
 
-        $input = $request->all();
-
         $skill = Skill::find($id);
-        $skill->update($input);
+        $skill->update($request->all());
 
         return redirect()->route('seeker.skills.index')
             ->with('success','Skill updated successfully');

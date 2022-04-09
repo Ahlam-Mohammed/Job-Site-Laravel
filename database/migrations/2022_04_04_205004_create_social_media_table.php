@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('twitter_link')->nullable();
             $table->string('linkedin_link')->nullable();
             $table->string('whatsapp_link')->nullable();
+            $table->string('github_link')->nullable();
 
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

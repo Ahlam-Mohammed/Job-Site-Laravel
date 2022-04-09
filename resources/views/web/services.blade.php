@@ -4,6 +4,9 @@
 
 @section('content')
 
+    <!-- Banner Section -->
+    @include('banner.services')
+
     <div class="container-lg">
         <!-- Services Section -->
         <section class="row py-5 px-lg-0 px-md-0 px-sm-0 px-2 ">

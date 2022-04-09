@@ -23,8 +23,9 @@
             {{-- Sidbar  --}}
             @include('layouts.web.seeker.sidebar')
             <div class="col-lg-9 col-12">
-                <div class="container-lg p-0">
+                <div class="container-lg pt-3 p-0">
                     {{-- Content Section  --}}
+                    @include('components.alert')
                     @yield('content')
                 </div>
             </div>

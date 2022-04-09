@@ -6,8 +6,9 @@
                 <h5 class="modal-title" id="modalCenterTitle">Create New Job</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="post">
+            <form action="{{ route('dashboard.jobs.store') }}" method="post">
                 @csrf
+                <input hidden name="user_id" value="{{ Auth::id() }}">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">
@@ -27,6 +28,7 @@
                         <div class="col-md-6 mb-4">
                             <label for="selectBasic" class="form-label">Type</label>
                             <select name="type" id="selectBasic" class="select2 form-select form-select-lg @error('type') is-invalid @enderror " data-allow-clear="true">
+                                <option selected disabled>Select Type</option>
                                 <option value="{{ JobEnum::TYPE_FULL_TIME }}">{{ JobEnum::TYPE_FULL_TIME }}</option>
                                 <option value="{{ JobEnum::TYPE_PART_TIME }}">{{ JobEnum::TYPE_PART_TIME }}</option>
                             </select>
@@ -35,6 +37,7 @@
                         <div class="col-md-6 mb-4">
                             <label for="select2Basic" class="form-label">Professional Level</label>
                             <select name="professional_level" id="select2Basic" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                <option selected disabled>Select Professional Level</option>
                                 <option value="{{ JobEnum::LEVEL_ENTRY }}">{{ JobEnum::LEVEL_ENTRY }}</option>
                                 <option value="{{ JobEnum::LEVEL_MID }}">{{ JobEnum::LEVEL_MID }}</option>
                                 <option value="{{ JobEnum::LEVEL_SENIOR }}">{{ JobEnum::LEVEL_SENIOR }}</option>
@@ -44,25 +47,27 @@
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailWithTitle" class="form-label">Max Salary</label>
-                            <input name="max_salary" value="{{ old('max_salary') }}" type="text" id="emailWithTitle" class="form-control" placeholder="$">
+                            <input name="max_salary" value="{{ old('max_salary') }}" type="text" id="emailWithTitle" class="form-control @error('max_salary') is-invalid @enderror" placeholder="$">
+                            @error('max_salary') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="col mb-0">
                             <label for="emailWithTitle" class="form-label">Min Salary</label>
-                            <input name="min_salary" value="{{ old('min_salary') }}" type="text" id="emailWithTitle" class="form-control" placeholder="$">
+                            <input name="min_salary" value="{{ old('min_salary') }}" type="text" id="emailWithTitle" class="form-control @error('min_salary') is-invalid @enderror" placeholder="$">
+                            @error('min_salary') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div>
                             <label for="exampleFormControlTextarea1" class="form-label">Skills</label>
-                            <textarea name="skills" class="form-control" id="exampleFormControlTextarea1" rows="5">{{ old('skills') }}</textarea>
-                            @error('skills') <span id="exampleInputEmail1-error" class="error @error('skills') is-invalid @enderror invalid-feedback">{{ $message }}</span> @enderror
+                            <textarea name="skills" class="form-control @error('skills') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5">{{ old('skills') }}</textarea>
+                            @error('skills') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div>
                             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5">{{ old('description') }}</textarea>
-                            @error('description') <span id="exampleInputEmail1-error" class="error @error('description') is-invalid @enderror invalid-feedback">{{ $message }}</span> @enderror
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5">{{ old('description') }}</textarea>
+                            @error('description') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                     </div>
                 </div>

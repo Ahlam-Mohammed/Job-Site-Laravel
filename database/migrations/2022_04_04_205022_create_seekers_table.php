@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('job_title');
             $table->string('career_field');
-            $table->string('professional_level');
+            $table->string('professional_level')->nullable();
+            $table->text('about')->nullable();
 
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

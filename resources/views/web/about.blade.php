@@ -4,16 +4,19 @@
 
 @section('content')
 
+    <!-- Banner Section -->
+    @include('banner.about')
+
     <div class="container-lg">
         <!-- About Us Section -->
         <section class="mb-5">
             <header class="d-flex justify-content-center mt-5 mb-lg-4">
-                <h1 class="text-primary fw-bold d-inline-block">About Us</span></h1>
+                <h1 class="text-primary fw-bold d-inline-block">About Us</h1>
             </header>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
                     <div >
-                        <img src="/images/circle/about.svg" class="img-fluid p-lg-0 p-5" alt="">
+                        <img src="{{ asset('images/circle/about.svg') }}" class="img-fluid p-lg-0 p-5" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
