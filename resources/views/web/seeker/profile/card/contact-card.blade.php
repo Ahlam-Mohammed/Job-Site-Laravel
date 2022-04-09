@@ -35,13 +35,13 @@
 
                     @if(isset($social->whatsapp_link))
                         <a href=" {{ $social->whatsapp_link }}" target="_blank" class=" d-flex align-items-center justify-content-center">
-                            <i class="bi bi-linkedin text-primary"></i>
+                            <i class="bi bi-whatsapp text-primary"></i>
                         </a>
                     @endif
 
                     @if(isset($social->github_link))
                         <a href=" {{ $social->github_link }}" target="_blank" class=" d-flex align-items-center justify-content-center">
-                            <i class="bi bi-linkedin text-primary"></i>
+                            <i class="bi bi-github text-primary"></i>
                         </a>
                     @endif
                 </div>

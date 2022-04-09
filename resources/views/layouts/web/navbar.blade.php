@@ -16,12 +16,24 @@
                             <img src="@if (Auth::user()->avatar) {{ asset(UserEnum::USER_AVATAR_PATH.Auth::user()->avatar) }} @else {{ asset(UserEnum::USER_AVATAR_DEFAULT) }} @endif" width="15%" class="img-fluid rounded-circle border border-2 border-secondary shadow-sm" alt="">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('seeker.profile') }}"><i class="bi bi-person-fill m-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item"
+                                   href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
+                                   #
+                                   @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
+                                   {{ route('seeker.profile', Auth::id()) }}
+                                   @elseif(Auth::user()->hasRole(RoleEnum::COMPANY))
+                                   {{ route('company.profile', Auth::id()) }}
+                                   @endif">
+                                    <i class="bi bi-person-fill m-2"></i> Profile
+                                </a>
+                            </li>
                             <li><a class="dropdown-item"
                                    href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
                                    {{route('dashboard.index')}}
                                    @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
                                    {{ route('seeker.account') }}
+                                   @elseif(Auth::user()->hasRole(RoleEnum::COMPANY))
+                                   {{ route('company.account') }}
                                    @endif">
                                     <i class="bi bi-speedometer m-2"></i> Dashboard
                                 </a>
@@ -49,7 +61,7 @@
                             <a class="nav-link text-light active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-light" href="{{ route('jobs') }}">Find Jobs</a>
+                            <a class="nav-link text-light" href="{{ route('all.job') }}">Find Jobs</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link text-light" href="{{ route('companies') }}">Companies</a>
@@ -76,8 +88,28 @@
                                     <img src="@if (Auth::user()->avatar) {{ asset(UserEnum::USER_AVATAR_PATH.Auth::user()->avatar) }} @else {{ asset(UserEnum::USER_AVATAR_DEFAULT) }} @endif" width="20%" class="img-fluid rounded-circle border border-2 border-secondary shadow-sm" alt="">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="{{ route('seeker.profile') }}"><i class="bi bi-person-fill m-2"></i> Profile</a></li>
-                                    <li><a class="dropdown-item" href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))  {{route('dashboard.index')}} @elseif(Auth::user()->hasRole(RoleEnum::SEEKER)) {{ route('seeker.account') }} @endif"><i class="bi bi-speedometer m-2"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
+                                                    #
+                                                 @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
+                                                    {{ route('seeker.profile', Auth::id()) }}
+                                                 @elseif(Auth::user()->hasRole(RoleEnum::COMPANY))
+                                                    {{ route('company.profile', Auth::id()) }}
+                                                 @endif">
+                                            <i class="bi bi-person-fill m-2"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                           href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
+                                                    {{route('dashboard.index')}}
+                                                @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
+                                                    {{ route('seeker.account') }}
+                                                @elseif(Auth::user()->hasRole(RoleEnum::COMPANY))
+                                                    {{ route('company.account') }}
+                                                @endif">
+                                            <i class="bi bi-speedometer m-2"></i>Dashboard
+                                        </a>
+                                    </li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-down-right m-2"></i> Sign out</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -17,7 +17,7 @@ class Job extends Model
     //////  Relationships /////
     public function user()
     {
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class);
     }
 
     public static function validate()
@@ -29,8 +29,8 @@ class Job extends Model
             'type'         => 'required',
             'skills'       => 'required',
             'user_id'      => 'required',
-            'min_salary'   => 'numeric',
-            'max_salary'   => 'numeric',
+            'min_salary'   => 'numeric|nullable',
+            'max_salary'   => 'numeric|nullable',
         ];
     }
 

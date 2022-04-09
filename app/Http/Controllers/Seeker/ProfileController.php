@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $user = User::find(Auth::id());
+        $user = User::find($id);
 
         $skills      = $user->skills()->get();
         $experiences = $user->experiences()->get();
@@ -22,6 +22,6 @@ class ProfileController extends Controller
         $info        = $user->info()->get();
 
         return view('web.seeker.profile.index',
-            compact('skills', 'experiences', 'educations', 'about', 'personal', 'social', 'info'));
+            compact('skills', 'experiences', 'educations', 'about', 'personal', 'social', 'info','user'));
     }
 }

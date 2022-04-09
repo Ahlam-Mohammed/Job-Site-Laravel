@@ -121,4 +121,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(SocialMedia::class);
     }
+
+    /**
+     * Get User Company
+     */
+    public function company(): HasOne
+    {
+        return $this->hasOne(Company::class);
+    }
+
+    /**
+     * Get User jobs
+     */
+    public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class);
+    }
 }

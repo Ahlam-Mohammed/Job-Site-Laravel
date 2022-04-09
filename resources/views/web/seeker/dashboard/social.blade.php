@@ -28,12 +28,12 @@
                                 </div>
                                 @error('linkedin_link') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                                 <div class="input-group">
-                                    <span class="input-group-text">@</span>
+                                    <span class="input-group-text"><i class="bi bi-whatsapp text-primary"></i></span>
                                     <input name="whatsapp_link" @if (isset($social->whatsapp_link)) value="{{ $social->whatsapp_link }}" @endif type="url" class="form-control @error('whatsapp_link') is-invalid @enderror" placeholder="Whatsapp Link">
                                 </div>
                                 @error('whatsapp_link') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                                 <div class="input-group">
-                                    <span class="input-group-text">@</span>
+                                    <span class="input-group-text"><i class="bi bi-github text-primary"></i></span>
                                     <input name="github_link" @if (isset($social->github_link)) value="{{ $social->github_link }}" @endif type="url" class="form-control @error('github_link') is-invalid @enderror" placeholder="GitHub Link">
                                 </div>
                                 @error('github_link') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror

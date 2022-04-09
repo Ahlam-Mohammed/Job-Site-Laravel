@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Seeker;
+namespace App\Http\Controllers\company;
 
 use App\Enum\UserEnum;
 use App\Http\Controllers\Controller;
-use App\Models\PersonalInfo;
 use App\Models\User;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SettingController extends Controller
+class AccountController extends Controller
 {
     use UploadTrait;
 
-    public function account()
+    public function index()
     {
-        $personal = User::find(Auth::id())->personalInfo()->first();
-        return view('web.seeker.dashboard.account', compact('personal'));
+        return view('web.company.dashboard.account');
     }
 
     public function accountUpdate(Request $request)
@@ -27,7 +25,7 @@ class SettingController extends Controller
         $request->validate( [
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email,'.Auth::id(),
-            'phone'    => 'nullable|numeric'
+            'phone'    => 'numeric|nullable'
         ] );
 
         $user->name      = $request->input('name');
@@ -36,15 +34,7 @@ class SettingController extends Controller
         $user->phone     = $request->input('phone');
         $user->update();
 
-        PersonalInfo::updateOrCreate( [ 'user_id' => Auth::id() ],
-            [
-                'birth'             => $request->input('birth'),
-                'gender'            => $request->input('gender'),
-                'nationality'       => $request->input('nationality'),
-                'residence_country' => $request->input('residence_country')
-            ]);
-
-        return redirect()->route('seeker.account')
+        return redirect()->route('company.account')
             ->with('success','updated successfully');
     }
 
@@ -55,7 +45,9 @@ class SettingController extends Controller
         $user = User::find(Auth::id());
         $user->update(['avatar'=>$avatar]);
 
-        return redirect()->route('seeker.account')
+        return redirect()->route('company.account')
             ->with('success','updated Avatar successfully');
     }
+
+
 }

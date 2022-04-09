@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('logo')->default('default.png');
+            $table->string('country')->nullable();
+            $table->string('industry')->nullable();
 
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -18,7 +18,7 @@
                                         <a><h4>{{ $experience->job_title }}</h4></a>
                                         <div>
                                             <button class="btn p-0" data-bs-toggle="modal" data-bs-target="#modal-update-{{ $experience->id, $experience->job_title, $experience->career_field, $experience->company_name, $experience->start_date, $experience->end_date, $experience->is_work }}"><i class="bi bi-pencil-square text-primary"></i></button>
-                                            <button class="btn p-0 m-2" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $experience->id }}""><i class="bi bi-trash text-danger"></i></button>
+                                            <button class="btn p-0 m-2" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $experience->id }}"><i class="bi bi-trash text-danger"></i></button>
                                         </div>
                                     </div>
                                     <div class="">

@@ -13,6 +13,7 @@ class SkillController extends Controller
     public function index()
     {
         $skills = User::find(Auth::id())->skills()->get();
+
         return view('web.seeker.dashboard.skill.skills', compact('skills'));
     }
 
