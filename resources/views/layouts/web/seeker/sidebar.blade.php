@@ -92,7 +92,10 @@
                 <button class="btn w-25 m-auto btn-sm btn-primary d-inline"><a href="{{ route('company.profile',Auth::id()) }}" class="text-light">Profile</a></button>
             </div>
             <nav class="card bg-transparent px-3 py-4 mt-3 d-flex gap-3">
-                <div class="@if(Route::currentRouteName() === 'company.account') bg-light rounded @endif">
+                <div class="
+                        @if(Route::currentRouteName() === 'company.account')
+                                bg-light rounded
+                        @endif">
                     <a href="{{ route('company.account') }}" class=" @if(Route::currentRouteName() === 'company.account') text-primary @else text-light @endif d-flex align-items-center d-inline-block ms-3 border-bottom p-2">
                         <i class="bi bi-person pe-2"></i>
                         <span class="fs-6 fw-normal">Account</span>

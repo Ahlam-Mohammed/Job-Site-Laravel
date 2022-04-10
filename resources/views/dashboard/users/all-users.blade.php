@@ -28,7 +28,7 @@
                 @if(isset($users))
                     @foreach($users as $user)
                         <tr>
-                            <td><strong>{{ $user->name }}</strong></td>
+                            <td><a href="{{ route('dashboard.profile', $user->id) }}"><strong>{{ $user->name }}</strong></a></td>
                             <td>{{ $user->email }}</td>
                             <td>
                             @if(!empty($user->getRoleNames()))

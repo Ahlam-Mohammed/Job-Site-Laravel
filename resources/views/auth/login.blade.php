@@ -61,7 +61,7 @@
                                 <label class="form-check-label fs-sm" for="keep-signed">Keep me signed in</label>
                             </div><a class="nav-link-style fs-ms" href="{{ route('password.request') }}">Forgot password?</a>
                         </div>
-                        <button class="btn btn-primary d-block w-100" type="submit">Sign in</button>
+                        <button class="btn btn-primary d-block w-100" type="submit">{{ __('Login') }}</button>
                         <p class="fs-sm pt-3 mb-0">Don't have an account? <a href="{{ route('register.way') }}" class="fw-medium" data-view="#modal-signup-view">Sign up</a></p>
                     </form>
                 </article>

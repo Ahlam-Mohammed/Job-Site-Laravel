@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -38,7 +39,11 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-//        $this->validate($request, User::validate());
+        $request->validate([
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users,email,'.$id,
+            'roles'    => 'required'
+        ]);
 
         $input = $request->all();
         if(!empty($input['password'])){
@@ -50,9 +55,9 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($input);
 
-//        DB::table('model_has_roles')->where('model_id',$id)->delete();
-//
-//        $user->assignRole($request->input('roles'));
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $user->assignRole($request->input('roles'));
 
         return redirect()->route('dashboard.users.index')
             ->with('success','User updated successfully');

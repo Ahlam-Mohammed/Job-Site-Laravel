@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
 
 <link rel="stylesheet" href="/assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
-<link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
 <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css" />
 <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
 <link rel="stylesheet" href="/assets/vendor/libs/tagify/tagify.css" />
