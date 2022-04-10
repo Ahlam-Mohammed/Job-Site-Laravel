@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
 
 <!-- Page CSS -->
-
+<link rel="stylesheet" href="/assets/vendor/css/pages/page-profile.css" />
 <!-- Helpers -->
 <script src="/assets/vendor/js/helpers.js"></script>
 

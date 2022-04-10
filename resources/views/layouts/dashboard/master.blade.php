@@ -43,7 +43,7 @@
 
 
                 <!-- Footer -->
-                @include('layouts.dashboard.footer')
+{{--                @include('layouts.dashboard.footer')--}}
                 <!-- / Footer -->
 
 
