@@ -8,6 +8,7 @@ use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Seeker\AboutController;
 use App\Http\Controllers\company\AboutController as AboutCompany;
+use App\Http\Controllers\seeker\CvController;
 use App\Http\Controllers\Seeker\EducationController;
 use App\Http\Controllers\Seeker\ExperienceController;
 use App\Http\Controllers\Seeker\InfoController;
@@ -57,6 +58,7 @@ Route::controller(HomeController::class)->group(function (){
 
     Route::get('/company/profile/{id}','companyProfile')->name('company.profile');
     Route::get('/seeker/profile/{id}','seekerProfile')->name('seeker.profile');
+
 });
 
 /*
@@ -172,6 +174,13 @@ Route::prefix('seeker')->group(function (){
         ///////////////////////// End Seekers Dashboard /////////////////////////
 
     });
+
+});
+
+Route::controller(CvController::class)->group(function (){
+
+    Route::get('/cv/{id}', 'showCV')->name('show.cv');
+    Route::get('/download/cv/PDF/{id}','downloadPDF')->name('download.cv');
 
 });
 
