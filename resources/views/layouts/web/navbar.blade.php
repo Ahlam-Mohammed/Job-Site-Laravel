@@ -28,7 +28,7 @@
                                 </a>
                             </li>
                             <li><a class="dropdown-item"
-                                   href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
+                                   href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN)||Auth::user()->hasRole(RoleEnum::ADMIN))
                                    {{route('dashboard.index')}}
                                    @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
                                    {{ route('seeker.account') }}
@@ -89,7 +89,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item"
-                                           href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
+                                           href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN)||Auth::user()->hasRole(RoleEnum::ADMIN))
                                                     #
                                                  @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
                                                     {{ route('seeker.profile', Auth::id()) }}

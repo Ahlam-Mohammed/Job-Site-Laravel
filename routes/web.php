@@ -68,7 +68,7 @@ Route::controller(HomeController::class)->group(function (){
 */
 Route::prefix('dashboard')->group(function (){
 
-    Route::middleware(['auth','role:SUPER_ADMIN'])->name('dashboard.')->group( function (){
+    Route::middleware(['auth','role:SUPER_ADMIN|ADMIN'])->name('dashboard.')->group( function (){
 
         Route::view('/','dashboard.index')->name('index');
 
