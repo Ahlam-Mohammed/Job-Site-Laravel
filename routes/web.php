@@ -4,6 +4,7 @@ use App\Http\Controllers\auth\ChangePasswordController;
 use App\Http\Controllers\company\AccountController;
 use App\Http\Controllers\dashboard\JobController;
 use App\Http\Controllers\company\JobController as JobCompanyController;
+use App\Http\Controllers\dashboard\ProfileController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Seeker\AboutController;
@@ -71,6 +72,12 @@ Route::prefix('dashboard')->group(function (){
     Route::middleware(['auth','role:SUPER_ADMIN|ADMIN'])->name('dashboard.')->group( function (){
 
         Route::view('/','dashboard.index')->name('index');
+
+        Route::controller(ProfileController::class)->group(function (){
+
+            Route::get('/profile/{id}', 'index')->name('profile');
+
+        });
 
         Route::controller(UserController::class)->group(function (){
             Route::get('/users/{role?}', 'index')->name('users.index');
