@@ -59,5 +59,6 @@
             </div>
         </div>
     </div>
+    <a href="{{ route('show.cv', $user->id) }}" class="btn btn-sm btn-primary position-fixed" style="bottom: 10px; right: 20px;"> CV<i class="bi bi-download m-2"></i></a>
 
 @endsection
