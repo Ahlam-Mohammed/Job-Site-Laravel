@@ -76,6 +76,8 @@ Route::prefix('dashboard')->group(function (){
         Route::controller(ProfileController::class)->group(function (){
 
             Route::get('/profile/{id}', 'index')->name('profile');
+            Route::get('/setting', 'setting')->name('setting');
+            Route::post('/update/avatar', 'updateAvatar')->name('update.avatar');
 
         });
 
