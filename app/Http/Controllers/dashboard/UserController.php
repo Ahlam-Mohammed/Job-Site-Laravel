@@ -42,7 +42,8 @@ class UserController extends Controller
         $request->validate([
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email,'.$id,
-            'roles'    => 'required'
+            'roles'    => 'required',
+            'phone'    => 'nullable|numeric'
         ]);
 
         $input = $request->all();
@@ -64,9 +65,9 @@ class UserController extends Controller
 
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+        User::find($id)->delete();
         return redirect()->route('dashboard.users.index')
             ->with('success', 'User deleted successfully');
     }

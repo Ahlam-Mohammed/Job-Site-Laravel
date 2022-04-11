@@ -15,17 +15,22 @@
                             @error('name') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row g-2">
                         <div class="col mb-3">
                             <label for="nameWithTitle" class="form-label">Full Name</label>
                             <input name="full_name" value="{{ old('full_name') }}" type="text" id="nameWithTitle" class="form-control" placeholder="Enter Full Name">
                         </div>
-                    </div>
-                    <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailWithTitle" class="form-label">Email</label>
                             <input name="email" value="{{ old('email') }}" type="email" id="emailWithTitle" class="form-control @error('email') is-invalid @enderror" placeholder="xxxx@xxx.xx">
                             @error('email') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="emailWithTitle" class="form-label">Phone</label>
+                            <input name="phone" value="{{ old('phone') }}" type="text" id="emailWithTitle" class="form-control @error('phone') is-invalid @enderror" placeholder="+967 777 777 777">
+                            @error('phone') <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="col-md-6 mb-4">
                             <div>

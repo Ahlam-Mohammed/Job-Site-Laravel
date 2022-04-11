@@ -53,7 +53,8 @@ class User extends Authenticatable
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email,'.$id,
             'password' => 'required|same:confirm-password|min:6',
-            'roles'    => 'required'
+            'roles'    => 'required',
+            'phone'    => 'nullable|numeric'
         ];
     }
 
