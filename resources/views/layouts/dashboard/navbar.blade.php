@@ -221,16 +221,16 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="@if ($user->avatar) {{ asset(UserEnum::USER_AVATAR_PATH.$user->avatar) }} @else {{ asset(UserEnum::USER_AVATAR_DEFAULT) }} @endif" alt class="w-px-40 h-auto rounded-circle">
+                        <img src="@if (Auth::user()->avatar) {{ asset(UserEnum::USER_AVATAR_PATH.$user->avatar) }} @else {{ asset(UserEnum::USER_AVATAR_DEFAULT) }} @endif" alt class="w-px-40 h-auto rounded-circle">
                     </div>
-                </a>
+             </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="{{ route('dashboard.profile', $user->id) }}">
+                        <a class="dropdown-item" href="{{ route('dashboard.profile', Auth::id()) }}">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="@if ($user->avatar) {{ asset(UserEnum::USER_AVATAR_PATH.$user->avatar) }} @else {{ asset(UserEnum::USER_AVATAR_DEFAULT) }} @endif" alt class="w-px-40 h-auto rounded-circle">
+                                        <img src="@if (Auth::user()->avatar) {{ asset(UserEnum::USER_AVATAR_PATH.Auth::user()->avatar) }} @else {{ asset(UserEnum::USER_AVATAR_DEFAULT) }} @endif" alt class="w-px-40 h-auto rounded-circle">
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">

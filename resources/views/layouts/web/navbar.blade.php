@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li><a class="dropdown-item"
                                    href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN))
-                                   #
+                                   {{ route('dashboard.profile',Auth::id()) }}
                                    @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
                                    {{ route('seeker.profile', Auth::id()) }}
                                    @elseif(Auth::user()->hasRole(RoleEnum::COMPANY))
@@ -90,7 +90,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item"
                                            href="@if(Auth::user()->hasRole(RoleEnum::SUPER_ADMIN)||Auth::user()->hasRole(RoleEnum::ADMIN))
-                                                    #
+                                                    {{ route('dashboard.profile',Auth::id()) }}
                                                  @elseif(Auth::user()->hasRole(RoleEnum::SEEKER))
                                                     {{ route('seeker.profile', Auth::id()) }}
                                                  @elseif(Auth::user()->hasRole(RoleEnum::COMPANY))
